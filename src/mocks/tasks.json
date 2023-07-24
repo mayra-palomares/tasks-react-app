@@ -1,55 +1,42 @@
 [
-    {
-        "_id": "64b3ead5d292837de4062fd1",
-        "title": "Create new app",
-        "description": "Description for new task",
-        "tags": [
-            "news",
-            "architecture"
-        ],
-        "completed": true,
-        "__v": 0
-    },
-    {
-        "_id": "64b5720b5065d86487d4bef2",
-        "title": "Design solution",
-        "description": "Design solution for app",
-        "tags": [
-            "software",
-            "architecture"
-        ],
-        "completed": true,
-        "__v": 0
-    },
-    {
-        "_id": "64b674aceccd3c1f40b03618",
-        "title": "Write test",
-        "description": "Write unit tests",
-        "tags": [
-            "test",
-            "architecture"
-        ],
-        "completed": true,
-        "__v": 0
-    },
-    {
-        "_id": "64b7bc65b46c5307fac2fd1b",
-        "title": "Test Swagger",
-        "description": "Description",
-        "tags": [
-            "swagger"
-        ],
-        "completed": false,
-        "__v": 0
-    },
-    {
-        "_id": "64b7bebcb51061d917a7191f",
-        "title": "Testing Swagger",
-        "description": "Description",
-        "tags": [
-            "swagger"
-        ],
-        "completed": false,
-        "__v": 0
-    }
+	{
+		"_id": "64b3ead5d292837de4062fd1",
+		"title": "Create new app",
+		"description": "Description for new task",
+		"tags": ["news", "architecture"],
+		"completed": true,
+		"__v": 0
+	},
+	{
+		"_id": "64b5720b5065d86487d4bef2",
+		"title": "Design solution",
+		"description": "Design solution for app",
+		"tags": ["software", "architecture"],
+		"completed": true,
+		"__v": 0
+	},
+	{
+		"_id": "64b674aceccd3c1f40b03618",
+		"title": "Write test",
+		"description": "Write unit tests",
+		"tags": ["test", "architecture"],
+		"completed": true,
+		"__v": 0
+	},
+	{
+		"_id": "64b7bc65b46c5307fac2fd1b",
+		"title": "Test Swagger",
+		"description": "Description",
+		"tags": ["swagger"],
+		"completed": false,
+		"__v": 0
+	},
+	{
+		"_id": "64b7bebcb51061d917a7191f",
+		"title": "Testing Swagger",
+		"description": "Description",
+		"tags": ["swagger"],
+		"completed": false,
+		"__v": 0
+	}
 ]

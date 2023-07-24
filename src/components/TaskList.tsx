@@ -1,3 +1,4 @@
+import { Task } from '../types/Task';
 import TaskItem from './TaskItem';
 
 type Props = {
