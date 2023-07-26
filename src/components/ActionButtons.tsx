@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 type Props = {
 	taskId: string;
@@ -33,11 +33,22 @@ export const ListItemActionButtons = ({ taskId }: Props) => {
 	);
 };
 
+const CancelButton = () => {
+	const navigate = useNavigate();
+	const handleCancel = () => navigate('/');
+	return <button onClick={handleCancel}>Cancel</button>;
+};
+
+const SaveButton = () => {
+	const handleSave = () => alert('Task saved successfully');
+	return <button onClick={handleSave}>Save</button>;
+};
+
 export const EditActionButtons = () => {
 	return (
 		<div className="edit-action-buttons">
-			<button>Cancel</button>
-			<button>Save</button>
+			<CancelButton />
+			<SaveButton />
 		</div>
 	);
 };

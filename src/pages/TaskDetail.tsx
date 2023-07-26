@@ -6,7 +6,7 @@ const TaskDetail = () => {
 		<div className="task-detail">
 			<h1 className="title">EDIT TASK</h1>
 			<TaskForm />
-			<EditActionButtons taskId={''} />
+			<EditActionButtons />
 		</div>
 	);
 };
