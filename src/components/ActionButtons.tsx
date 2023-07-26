@@ -24,13 +24,20 @@ const DeleteButton = ({ taskId }: Props) => {
 	);
 };
 
-const ActionButtons = ({ taskId }: Props) => {
+export const ListItemActionButtons = ({ taskId }: Props) => {
 	return (
-		<div className="actionButtons">
+		<div className="action-buttons">
 			<EditButton taskId={taskId} />
 			<DeleteButton taskId={taskId} />
 		</div>
 	);
 };
 
-export default ActionButtons;
+export const EditActionButtons = () => {
+	return (
+		<div className="edit-action-buttons">
+			<button>Cancel</button>
+			<button>Save</button>
+		</div>
+	);
+};

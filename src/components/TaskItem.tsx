@@ -1,5 +1,5 @@
 import { Task } from '../types/Task';
-import ActionButtons from './ActionButtons';
+import { ListItemActionButtons } from './ActionButtons';
 
 type Props = {
 	task: Task;
@@ -12,7 +12,7 @@ const TaskItem = ({ task }: Props) => {
 				<h3>{task.title}</h3>
 				<p>{task.description}</p>
 			</div>
-			<ActionButtons taskId={task._id} />
+			<ListItemActionButtons taskId={task._id} />
 		</li>
 	);
 };

@@ -3,7 +3,7 @@ import data from '../mocks/tasks.json';
 
 const Tasks = () => {
 	return (
-		<main className="container">
+		<main className="task-page">
 			<h1 className="title">TASK LIST</h1>
 			<button>Add Task</button>
 			<TaskList tasks={data} />
