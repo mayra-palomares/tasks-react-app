@@ -39,16 +39,26 @@ const CancelButton = () => {
 	return <button onClick={handleCancel}>Cancel</button>;
 };
 
-const SaveButton = () => {
-	const handleSave = () => alert('Task saved successfully');
-	return <button onClick={handleSave}>Save</button>;
+type SaveButtonsProps = {
+	handleSave: () => void;
 };
 
-export const EditActionButtons = () => {
+const SaveButton = ({ handleSave }: SaveButtonsProps) => {
+	const handleClick = () => {
+		handleSave();
+	};
+	return <button onClick={handleClick}>Save</button>;
+};
+
+type EditActionButtonsProps = {
+	handleSave: () => void;
+};
+
+export const EditActionButtons = ({ handleSave }: EditActionButtonsProps) => {
 	return (
 		<div className="edit-action-buttons">
 			<CancelButton />
-			<SaveButton />
+			<SaveButton handleSave={handleSave} />
 		</div>
 	);
 };

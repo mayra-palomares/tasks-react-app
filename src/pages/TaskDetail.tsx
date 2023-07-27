@@ -1,10 +1,9 @@
 import { useParams } from 'react-router-dom';
-import { EditActionButtons } from '../components/ActionButtons';
+import ErrorPage from '../components/ErrorPage';
+import Loading from '../components/Loading';
 import TaskForm from '../components/TaskForm';
 import useFetch from '../hooks/useFetch';
 import { Task } from '../types/Task';
-import Loading from '../components/Loading';
-import ErrorPage from '../components/ErrorPage';
 
 const TaskDetail = () => {
 	const params = useParams();
@@ -24,7 +23,6 @@ const TaskDetail = () => {
 		<div className="task-detail">
 			<h1 className="title">EDIT TASK</h1>
 			<TaskForm task={task} />
-			<EditActionButtons />
 		</div>
 	);
 };

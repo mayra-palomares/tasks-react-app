@@ -1,21 +1,5 @@
 import { useEffect, useState } from "react";
-
-
-const API_URL = import.meta.env.VITE_API_URL;
-const getUrl = (path: string) => API_URL + path
-
-enum HttpMethod {
-    GET = "GET",
-    POST = "POST",
-    PUT = "PUT",
-    DELETE = "DELETE"
-};
-
-interface RequestOptions {
-    method?: HttpMethod;
-    headers?: Record<string, string>;
-    body?: object;
-}
+import { RequestOptions, fetchData } from "../utils/api";
 
 interface Response<T> {
     data: T | null;
@@ -37,24 +21,16 @@ const useFetch = <T>(path: string, options?: RequestOptions) => {
     }, [])
 
     useEffect(() => {
-        const url = getUrl(path)
-
-        const fetchData = async () => {
+        const fetchAPI = async () => {
             try {
-                const res = await fetch(url, {
-                    signal: abortController?.signal,
-                    method: options?.method ?? HttpMethod.GET,
-                    headers: options?.headers ?? {},
-                    body: JSON.stringify(options?.body),
-                });
-                const data = await res.json();
+                const data = await fetchData(path, { ...options, signal: abortController?.signal, })
                 setResponse({ data, isLoading: false, error: null })
             } catch (error) {
                 setResponse({ data: null, isLoading: false, error })
             }
         };
 
-        fetchData();
+        fetchAPI();
     }, [path]);
 
     return response;
