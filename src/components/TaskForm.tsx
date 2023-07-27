@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { EditActionButtons } from '../components/ActionButtons';
 import { Task } from '../types/Task';
+import { put } from '../utils/api';
 
 type Props = {
 	task: Task;
@@ -10,8 +11,9 @@ function TaskForm({ task }: Props) {
 	const [data, setData] = useState<Task>(task);
 	const { title = '', description = '', tags = [] } = data;
 
-	const handleSave = () => {
-		alert('Task was updated');
+	const handleSave = async () => {
+		await put(`/tasks/${task._id}`, data);
+		alert('Task was saved successfully');
 	};
 
 	const handleChange = (event: any) => {

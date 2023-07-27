@@ -35,6 +35,7 @@ export const ListItemActionButtons = ({ taskId }: Props) => {
 
 const CancelButton = () => {
 	const navigate = useNavigate();
+
 	const handleCancel = () => navigate('/');
 	return <button onClick={handleCancel}>Cancel</button>;
 };

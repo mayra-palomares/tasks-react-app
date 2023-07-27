@@ -7,9 +7,10 @@ export enum HttpMethod {
     DELETE = "DELETE"
 };
 
+type Headers = Record<string, string>
 export interface RequestOptions {
     method?: HttpMethod;
-    headers?: Record<string, string>;
+    headers?: Headers;
     body?: string;
     signal?: AbortSignal;
 }
@@ -21,7 +22,7 @@ export const fetchData = async (path: string, options?: RequestOptions) => {
     const fetchOptions: RequestOptions = {
         method: options?.method ?? HttpMethod.GET,
         headers: options?.headers ?? {},
-        body: JSON.stringify(options?.body),
+        body: options?.body,
     }
 
     if (options?.signal) {
@@ -32,6 +33,22 @@ export const fetchData = async (path: string, options?: RequestOptions) => {
     return await res.json();
 }
 
-export const get = async (url: string) => {
-    return await fetchData(url);
+export const get = async (path: string) => {
+    return await fetchData(path);
+}
+
+export const post = async (path: string, body: object) => {
+    const options: RequestOptions = {
+        method: HttpMethod.POST,
+        body: JSON.stringify(body)
+    }
+    return await fetchData(path, options);
+}
+
+export const put = async (path: string, body: object) => {
+    const options: RequestOptions = {
+        method: HttpMethod.PUT,
+        body: JSON.stringify(body)
+    }
+    return await fetchData(path, options);
 }
