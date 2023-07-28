@@ -1,7 +1,8 @@
 import './App.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import TaskDetail from './pages/TaskDetail';
+import EditTask from './pages/EditTask';
 import Tasks from './pages/Tasks';
+import CreateTask from './pages/CreateTask';
 
 function App() {
 	const router = createBrowserRouter([
@@ -10,8 +11,12 @@ function App() {
 			element: <Tasks />,
 		},
 		{
+			path: '/tasks/create',
+			element: <CreateTask />,
+		},
+		{
 			path: '/tasks/:id',
-			element: <TaskDetail />,
+			element: <EditTask />,
 		},
 	]);
 

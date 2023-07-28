@@ -5,3 +5,5 @@ export type Task = {
 	completed: boolean;
 	tags: string[];
 };
+
+export type TaskRequest = Pick<Task, "title" | "description" | "completed" | "tags">;

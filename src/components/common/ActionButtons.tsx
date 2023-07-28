@@ -51,11 +51,11 @@ const SaveButton = ({ handleSave }: SaveButtonsProps) => {
 	return <button onClick={handleClick}>Save</button>;
 };
 
-type EditActionButtonsProps = {
+type FormActionButtonsProps = {
 	handleSave: () => void;
 };
 
-export const EditActionButtons = ({ handleSave }: EditActionButtonsProps) => {
+export const FormActionButtons = ({ handleSave }: FormActionButtonsProps) => {
 	return (
 		<div className="edit-action-buttons">
 			<CancelButton />

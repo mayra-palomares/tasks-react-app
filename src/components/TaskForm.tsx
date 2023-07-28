@@ -1,19 +1,20 @@
 import { useState } from 'react';
-import { EditActionButtons } from '../components/ActionButtons';
-import { Task } from '../types/Task';
-import { put } from '../utils/api';
+import { FormActionButtons } from './common/ActionButtons';
+import { TaskRequest } from '../types/Task';
 
 type Props = {
-	task: Task;
+	task?: TaskRequest;
+	handleSave: (data: TaskRequest) => void;
 };
 
-function TaskForm({ task }: Props) {
-	const [data, setData] = useState<Task>(task);
+const initialTask = { title: '', description: '', tags: [], completed: false };
+
+function TaskForm({ task = initialTask, handleSave }: Props) {
+	const [data, setData] = useState<TaskRequest>(task);
 	const { title = '', description = '', tags = [] } = data;
 
-	const handleSave = async () => {
-		await put(`/tasks/${task._id}`, data);
-		alert('Task was saved successfully');
+	const onClickSave = async () => {
+		handleSave(data);
 	};
 
 	const handleChange = (event: any) => {
@@ -59,7 +60,7 @@ function TaskForm({ task }: Props) {
 					/>
 				</div>
 			</form>
-			<EditActionButtons handleSave={handleSave} />
+			<FormActionButtons handleSave={onClickSave} />
 		</>
 	);
 }

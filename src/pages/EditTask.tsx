@@ -1,15 +1,21 @@
 import { useParams } from 'react-router-dom';
-import ErrorPage from '../components/ErrorPage';
-import Loading from '../components/Loading';
+import ErrorPage from '../components/common/ErrorPage';
+import Loading from '../components/common/Loading';
 import TaskForm from '../components/TaskForm';
 import useFetch from '../hooks/useFetch';
-import { Task } from '../types/Task';
+import { Task, TaskRequest } from '../types/Task';
+import { put } from '../utils/api';
 
-const TaskDetail = () => {
+const EditTask = () => {
 	const params = useParams();
 	const taskId = params?.id ?? '';
 	const { data = {}, isLoading, error } = useFetch<Task>(`/tasks/${taskId}`);
 	const task = data as Task;
+
+	const handleSave = async (data: TaskRequest) => {
+		await put(`/tasks/${task._id}`, data);
+		alert('Task was saved successfully');
+	};
 
 	if (isLoading) {
 		return <Loading />;
@@ -22,9 +28,9 @@ const TaskDetail = () => {
 	return (
 		<div className="task-detail">
 			<h1 className="title">EDIT TASK</h1>
-			<TaskForm task={task} />
+			<TaskForm task={task} handleSave={handleSave} />
 		</div>
 	);
 };
 
-export default TaskDetail;
+export default EditTask;

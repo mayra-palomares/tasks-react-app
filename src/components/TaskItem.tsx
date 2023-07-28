@@ -1,5 +1,5 @@
 import { Task } from '../types/Task';
-import { ListItemActionButtons } from './ActionButtons';
+import { ListItemActionButtons } from './common/ActionButtons';
 
 type Props = {
 	task: Task;
