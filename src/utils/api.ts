@@ -21,7 +21,7 @@ export const fetchData = async (path: string, options?: RequestOptions) => {
     const url = getUrl(path)
     const fetchOptions: RequestOptions = {
         method: options?.method ?? HttpMethod.GET,
-        headers: options?.headers ?? {},
+        headers: options?.headers ?? { "Content-Type": "application/json", },
         body: options?.body,
     }
 
