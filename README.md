@@ -17,6 +17,7 @@ Project is created with:
 - TypeScript
 - React
 - Vite
+- React Hook Form
 
 ## Setup
 
