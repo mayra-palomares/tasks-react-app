@@ -40,26 +40,15 @@ const CancelButton = () => {
 	return <button onClick={handleCancel}>Cancel</button>;
 };
 
-type SaveButtonsProps = {
-	handleSave: () => void;
+const SaveButton = () => {
+	return <button type="submit">Save</button>;
 };
 
-const SaveButton = ({ handleSave }: SaveButtonsProps) => {
-	const handleClick = () => {
-		handleSave();
-	};
-	return <button onClick={handleClick}>Save</button>;
-};
-
-type FormActionButtonsProps = {
-	handleSave: () => void;
-};
-
-export const FormActionButtons = ({ handleSave }: FormActionButtonsProps) => {
+export const FormActionButtons = () => {
 	return (
 		<div className="edit-action-buttons">
 			<CancelButton />
-			<SaveButton handleSave={handleSave} />
+			<SaveButton />
 		</div>
 	);
 };

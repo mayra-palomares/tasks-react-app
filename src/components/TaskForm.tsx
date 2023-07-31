@@ -1,67 +1,65 @@
-import { useState } from 'react';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { FormActionButtons } from './common/ActionButtons';
 import { TaskRequest } from '../types/Task';
+interface FormInput {
+	title: string;
+	description: string;
+	tags: string[];
+}
 
-type Props = {
+const initialTask = { title: '', description: '', tags: [], completed: false };
+
+type TaskFormProps = {
 	task?: TaskRequest;
 	handleSave: (data: TaskRequest) => void;
 };
 
-const initialTask = { title: '', description: '', tags: [], completed: false };
+function TaskForm({ task = initialTask }: TaskFormProps) {
+	const { register, handleSubmit } = useForm<FormInput>({
+		defaultValues: task,
+	});
 
-function TaskForm({ task = initialTask, handleSave }: Props) {
-	const [data, setData] = useState<TaskRequest>(task);
-	const { title = '', description = '', tags = [] } = data;
-
-	const onClickSave = async () => {
-		handleSave(data);
-	};
-
-	const handleChange = (event: any) => {
-		const { name, value } = event.target;
-		setData((prevData) => ({
-			...prevData,
-			[name]: value,
-		}));
+	const onSubmit: SubmitHandler<FormInput> = (data) => {
+		console.log(data);
+		//handleSave(data);
 	};
 
 	return (
-		<>
-			<form className="form" autoComplete="off" autoCorrect="off">
-				<div className="form-group">
-					<label>Name</label>
-					<input
-						value={title}
-						onChange={handleChange}
-						type="text"
-						name="title"
-						autoComplete="off"
-						autoCorrect="off"
-					/>
-				</div>
-				<div className="form-group">
-					<label>Description</label>
-					<textarea
-						value={description}
-						onChange={handleChange}
-						name="description"
-						autoComplete="off"
-						autoCorrect="off"
-						rows={4}
-					/>
-				</div>
-				<div className="form-group">
-					<label>Tags</label>
-					<input
-						value={tags?.join(',')}
-						onChange={() => {}}
-						type="text"
-						name="tags"
-					/>
-				</div>
-			</form>
-			<FormActionButtons handleSave={onClickSave} />
-		</>
+		<form
+			onSubmit={handleSubmit(onSubmit)}
+			className="form"
+			autoComplete="off"
+			autoCorrect="off"
+		>
+			<div className="form-group">
+				<label>Name</label>
+				<input
+					{...register('title')}
+					type="text"
+					autoComplete="off"
+					autoCorrect="off"
+				/>
+			</div>
+			<div className="form-group">
+				<label>Description</label>
+				<textarea
+					{...register('description')}
+					autoComplete="off"
+					autoCorrect="off"
+					rows={4}
+				/>
+			</div>
+			<div className="form-group">
+				<label>Tags</label>
+				<input
+					{...register('tags')}
+					type="text"
+					autoComplete="off"
+					autoCorrect="off"
+				/>
+			</div>
+			<FormActionButtons />
+		</form>
 	);
 }
 
