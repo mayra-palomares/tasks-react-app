@@ -139,6 +139,13 @@ textarea {
 	padding: 10px;
 }
 
+.form-group .error {
+	font-size: small;
+	color: rgb(189, 0, 0);
+	display: block;
+	margin-top: 2px;
+}
+
 .edit-action-buttons {
 	width: 100%;
 	margin-right: 15%;
