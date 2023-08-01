@@ -35,16 +35,16 @@ export const ListItemActionButtons = ({ taskId }: Props) => {
 
 const CancelButton = () => {
 	const navigate = useNavigate();
+
 	const handleCancel = () => navigate('/');
 	return <button onClick={handleCancel}>Cancel</button>;
 };
 
 const SaveButton = () => {
-	const handleSave = () => alert('Task saved successfully');
-	return <button onClick={handleSave}>Save</button>;
+	return <button type="submit">Save</button>;
 };
 
-export const EditActionButtons = () => {
+export const FormActionButtons = () => {
 	return (
 		<div className="edit-action-buttons">
 			<CancelButton />
