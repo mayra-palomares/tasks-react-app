@@ -1,37 +1,14 @@
-import { FormActionButtons } from './common/ActionButtons';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { FormActionButtons } from './ActionButtons';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import CreatableSelect from 'react-select/creatable';
-import { TaskRequest } from '../types/Task';
-import { z } from 'zod';
-
-const formSchema = z.object({
-	title: z.string().min(1, 'Title is required').max(50),
-	description: z.string().min(1, 'Description is required').max(400),
-	tags: z
-		.array(z.object({ label: z.string(), value: z.string() }))
-		.min(1, 'Tags are required'),
-});
-
-type FormData = z.infer<typeof formSchema>;
-
-const parseTasktoFormData = (task: TaskRequest): FormData => {
-	const parsedTags = task.tags.map((tag) => ({ label: tag, value: tag }));
-	return {
-		...task,
-		tags: parsedTags,
-	};
-};
-
-const parseFormDatatoTask = (data: FormData): TaskRequest => {
-	const parsedTags = data.tags.map((tag) => tag.label);
-	const parsedTask = {
-		...data,
-		tags: parsedTags,
-		completed: false,
-	};
-	return parsedTask;
-};
+import { TaskRequest } from '../../types/Task';
+import { FC } from 'react';
+import {
+	FormSchema,
+	formResolver,
+	parseFormDatatoTask,
+	parseTasktoFormData,
+} from './validator';
 
 const initialTask = { title: '', description: '', tags: [], completed: false };
 
@@ -40,18 +17,18 @@ type TaskFormProps = {
 	handleSave: (data: TaskRequest) => void;
 };
 
-function TaskForm({ task = initialTask, handleSave }: TaskFormProps) {
+const TaskForm: FC<TaskFormProps> = ({ task = initialTask, handleSave }) => {
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
 		control,
-	} = useForm<FormData>({
+	} = useForm<FormSchema>({
 		defaultValues: parseTasktoFormData(task),
-		resolver: zodResolver(formSchema),
+		resolver: formResolver,
 	});
 
-	const onSubmit: SubmitHandler<FormData> = (data) => {
+	const onSubmit: SubmitHandler<FormSchema> = (data) => {
 		const parsedData = parseFormDatatoTask(data);
 		handleSave(parsedData);
 	};
@@ -104,6 +81,6 @@ function TaskForm({ task = initialTask, handleSave }: TaskFormProps) {
 			<FormActionButtons />
 		</form>
 	);
-}
+};
 
 export default TaskForm;

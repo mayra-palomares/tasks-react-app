@@ -1,8 +1,9 @@
+import { FC } from 'react';
 import TaskForm from '../components/TaskForm';
 import { TaskRequest } from '../types/Task';
 import { post } from '../utils/api';
 
-const CreateTask = () => {
+const CreateTask: FC = () => {
 	const handleSave = async (data: TaskRequest) => {
 		await post('/tasks', data);
 		alert('Task was created successfully');

@@ -4,8 +4,9 @@ import Loading from '../components/common/Loading';
 import TaskList from '../components/TaskList';
 import useFetch from '../hooks/useFetch';
 import { Task } from '../types/Task';
+import { FC } from 'react';
 
-const Tasks = () => {
+const Tasks: FC = () => {
 	const { data, isLoading, error } = useFetch<Task[]>('/tasks');
 	const navigate = useNavigate();
 
