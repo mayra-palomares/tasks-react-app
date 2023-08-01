@@ -91,7 +91,12 @@ function TaskForm({ task = initialTask, handleSave }: TaskFormProps) {
 					name="tags"
 					control={control}
 					render={({ field }) => (
-						<CreatableSelect {...field} isMulti isClearable />
+						<CreatableSelect
+							{...field}
+							isMulti
+							isClearable
+							placeholder="Create new tags..."
+						/>
 					)}
 				/>
 				{errors.tags && <span className="error">{errors.tags?.message}</span>}
