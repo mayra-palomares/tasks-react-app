@@ -6,8 +6,8 @@ import { FC } from 'react';
 import {
 	FormSchema,
 	formResolver,
-	parseFormDatatoTask,
-	parseTasktoFormData,
+	parseFormSchematoTask,
+	parseTasktoFormSchema,
 } from './validator';
 
 const initialTask = { title: '', description: '', tags: [], completed: false };
@@ -24,12 +24,12 @@ const TaskForm: FC<TaskFormProps> = ({ task = initialTask, handleSave }) => {
 		formState: { errors },
 		control,
 	} = useForm<FormSchema>({
-		defaultValues: parseTasktoFormData(task),
+		defaultValues: parseTasktoFormSchema(task),
 		resolver: formResolver,
 	});
 
 	const onSubmit: SubmitHandler<FormSchema> = (data) => {
-		const parsedData = parseFormDatatoTask(data);
+		const parsedData = parseFormSchematoTask(data);
 		handleSave(parsedData);
 	};
 

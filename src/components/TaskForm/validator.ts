@@ -12,9 +12,9 @@ const formSchema = z.object({
 
 export type FormSchema = z.infer<typeof formSchema>;
 
-export const formResolver = zodResolver(formSchema)
+export const formResolver = zodResolver(formSchema);
 
-export const parseTasktoFormData = (task: TaskRequest): FormSchema => {
+export const parseTasktoFormSchema = (task: TaskRequest): FormSchema => {
     const parsedTags = task.tags.map((tag) => ({ label: tag, value: tag }));
     return {
         ...task,
@@ -22,12 +22,11 @@ export const parseTasktoFormData = (task: TaskRequest): FormSchema => {
     };
 };
 
-export const parseFormDatatoTask = (data: FormSchema): TaskRequest => {
+export const parseFormSchematoTask = (data: FormSchema): TaskRequest => {
     const parsedTags = data.tags.map((tag) => tag.label);
-    const parsedTask = {
+    return {
         ...data,
         tags: parsedTags,
         completed: false,
     };
-    return parsedTask;
 };
