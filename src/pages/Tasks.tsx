@@ -5,12 +5,25 @@ import TaskList from '../components/TaskList';
 import useFetch from '../hooks/useFetch';
 import { Task } from '../types/Task';
 import { FC } from 'react';
+import { deleteById, post } from '../utils/api';
 
 const Tasks: FC = () => {
-	const { data, isLoading, error } = useFetch<Task[]>('/tasks');
+	const { data, isLoading, error, fetchData } = useFetch<Task[]>('/tasks');
 	const navigate = useNavigate();
 
 	const handleAddTask = () => navigate('/tasks/create');
+
+	const handleComplete = async (taskId: string) => {
+		await post(`/tasks/${taskId}/complete`, {});
+		alert('Task was completed successfully');
+		fetchData();
+	};
+
+	const handleDelete = async (taskId: string) => {
+		await deleteById(`/tasks/${taskId}`);
+		alert('Task was deleted');
+		fetchData();
+	};
 
 	if (error) {
 		return <ErrorPage />;
@@ -20,7 +33,15 @@ const Tasks: FC = () => {
 		<main className="task-page">
 			<h1 className="title">TASK LIST</h1>
 			<button onClick={handleAddTask}>Add Task</button>
-			{isLoading ? <Loading /> : <TaskList tasks={data ?? []} />}
+			{isLoading ? (
+				<Loading />
+			) : (
+				<TaskList
+					tasks={data ?? []}
+					handleComplete={handleComplete}
+					handleDelete={handleDelete}
+				/>
+			)}
 		</main>
 	);
 };

@@ -73,6 +73,10 @@ button:focus-visible {
 	font-size: 2.5rem;
 }
 
+.title-completed {
+	text-decoration: line-through;
+}
+
 .task {
 	background-color: #ffffff;
 	border-radius: 8px;
