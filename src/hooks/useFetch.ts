@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { RequestOptions, fetchData } from "../utils/api";
+import { RequestOptions, fetchAPI } from "../utils/api";
 
 interface Response<T> {
     data: T | null;
@@ -9,9 +9,19 @@ interface Response<T> {
 
 const initialResponse = { data: null, isLoading: true, error: null };
 
-const useFetch = <T>(path: string, options?: RequestOptions): Response<T> => {
+const useFetch = <T>(path: string, options?: RequestOptions) => {
     const [response, setResponse] = useState<Response<T>>(initialResponse)
     const [abortController, setAbortController] = useState<AbortController | null>(null)
+
+    const fetchData = async () => {
+        try {
+            const data = await fetchAPI(path, { ...options, signal: abortController?.signal, })
+            setResponse({ data, isLoading: false, error: null })
+        } catch (error) {
+            setResponse({ data: null, isLoading: false, error })
+        }
+    };
+
     useEffect(() => {
         const controller = new AbortController();
         setAbortController(controller)
@@ -21,19 +31,10 @@ const useFetch = <T>(path: string, options?: RequestOptions): Response<T> => {
     }, [])
 
     useEffect(() => {
-        const fetchAPI = async () => {
-            try {
-                const data = await fetchData(path, { ...options, signal: abortController?.signal, })
-                setResponse({ data, isLoading: false, error: null })
-            } catch (error) {
-                setResponse({ data: null, isLoading: false, error })
-            }
-        };
-
-        fetchAPI();
+        fetchData();
     }, [path]);
 
-    return response;
+    return { ...response, fetchData };
 };
 
 export default useFetch;
