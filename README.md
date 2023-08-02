@@ -20,6 +20,8 @@ Project is created with:
 - React Hook Form
 - Zod
 - React Select
+- Jest
+- Testing Library
 
 ## Setup
 

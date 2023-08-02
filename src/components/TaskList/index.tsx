@@ -1,11 +1,12 @@
-import { Task } from '../types/Task';
+import { FC } from 'react';
+import { Task } from '../../types/Task';
 import TaskItem from './TaskItem';
 
-type Props = {
+type TaskListProps = {
 	tasks: Task[];
 };
 
-const TaskList = ({ tasks }: Props) => {
+const TaskList: FC<TaskListProps> = ({ tasks }) => {
 	return (
 		<ul className="list">
 			{tasks.map((task) => (

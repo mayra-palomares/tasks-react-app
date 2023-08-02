@@ -1,11 +1,12 @@
-import { Task } from '../types/Task';
-import { ListItemActionButtons } from './common/ActionButtons';
+import { FC } from 'react';
+import { Task } from '../../types/Task';
+import ListItemActionButtons from './ListItemActionButtons';
 
-type Props = {
+type TaskItemProps = {
 	task: Task;
 };
 
-const TaskItem = ({ task }: Props) => {
+const TaskItem: FC<TaskItemProps> = ({ task }) => {
 	return (
 		<li className="task">
 			<div>

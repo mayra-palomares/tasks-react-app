@@ -9,7 +9,7 @@ interface Response<T> {
 
 const initialResponse = { data: null, isLoading: true, error: null };
 
-const useFetch = <T>(path: string, options?: RequestOptions) => {
+const useFetch = <T>(path: string, options?: RequestOptions): Response<T> => {
     const [response, setResponse] = useState<Response<T>>(initialResponse)
     const [abortController, setAbortController] = useState<AbortController | null>(null)
     useEffect(() => {

@@ -5,8 +5,9 @@ import TaskForm from '../components/TaskForm';
 import useFetch from '../hooks/useFetch';
 import { Task, TaskRequest } from '../types/Task';
 import { put } from '../utils/api';
+import { FC } from 'react';
 
-const EditTask = () => {
+const EditTask: FC = () => {
 	const params = useParams();
 	const taskId = params?.id ?? '';
 	const { data = {}, isLoading, error } = useFetch<Task>(`/tasks/${taskId}`);
