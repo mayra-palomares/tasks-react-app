@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Task } from '../../types/Task';
-import { ListItemActionButtons } from './ActionButtons';
+import ListItemActionButtons from './ListItemActionButtons';
 
 type TaskItemProps = {
 	task: Task;

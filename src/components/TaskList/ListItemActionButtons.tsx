@@ -25,7 +25,7 @@ const DeleteButton: FC<ButtonProps> = ({ taskId }) => {
 	);
 };
 
-export const ListItemActionButtons: FC<ButtonProps> = ({ taskId }) => {
+const ListItemActionButtons: FC<ButtonProps> = ({ taskId }) => {
 	return (
 		<div className="action-buttons">
 			<EditButton taskId={taskId} />
@@ -33,3 +33,5 @@ export const ListItemActionButtons: FC<ButtonProps> = ({ taskId }) => {
 		</div>
 	);
 };
+
+export default ListItemActionButtons;

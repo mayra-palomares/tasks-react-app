@@ -1,4 +1,4 @@
-import { FormActionButtons } from './ActionButtons';
+import FormActionButtons from './FormActionButtons';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import CreatableSelect from 'react-select/creatable';
 import { TaskRequest } from '../../types/Task';
@@ -30,7 +30,7 @@ const TaskForm: FC<TaskFormProps> = ({ task = initialTask, handleSave }) => {
 
 	const onSubmit: SubmitHandler<FormSchema> = (data) => {
 		const parsedData = parseFormSchematoTask(data);
-		handleSave(parsedData);
+		handleSave({ ...parsedData, completed: task.completed });
 	};
 
 	return (
