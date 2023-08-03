@@ -8,6 +8,7 @@ const formSchema = z.object({
     tags: z
         .array(z.object({ label: z.string(), value: z.string() }))
         .min(1, 'Tags are required'),
+    completed: z.boolean()
 });
 
 export type FormSchema = z.infer<typeof formSchema>;
@@ -26,7 +27,6 @@ export const parseFormSchematoTask = (data: FormSchema): TaskRequest => {
     const parsedTags = data.tags.map((tag) => tag.label);
     return {
         ...data,
-        tags: parsedTags,
-        completed: false,
+        tags: parsedTags
     };
 };

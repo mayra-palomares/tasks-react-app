@@ -9,6 +9,7 @@ import {
 	parseFormSchematoTask,
 	parseTasktoFormSchema,
 } from './validator';
+import Switch from '../common/Switch';
 
 const initialTask = { title: '', description: '', tags: [], completed: false };
 
@@ -30,7 +31,7 @@ const TaskForm: FC<TaskFormProps> = ({ task = initialTask, handleSave }) => {
 
 	const onSubmit: SubmitHandler<FormSchema> = (data) => {
 		const parsedData = parseFormSchematoTask(data);
-		handleSave({ ...parsedData, completed: task.completed });
+		handleSave(parsedData);
 	};
 
 	return (
@@ -77,6 +78,22 @@ const TaskForm: FC<TaskFormProps> = ({ task = initialTask, handleSave }) => {
 					)}
 				/>
 				{errors.tags && <span className="error">{errors.tags?.message}</span>}
+			</div>
+			<div className="form-group-switch">
+				<label>Completed</label>
+				<Controller
+					name="completed"
+					control={control}
+					render={({ field }) => {
+						return (
+							<Switch
+								{...field}
+								isOn={field.value}
+								handleToggle={field.onChange}
+							/>
+						);
+					}}
+				/>
 			</div>
 			<FormActionButtons />
 		</form>
