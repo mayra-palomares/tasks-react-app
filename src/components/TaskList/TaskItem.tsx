@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { Task } from '../../types/Task';
 import ListItemActionButtons from './ListItemActionButtons';
+import styles from './TaskList.module.css';
 
 type TaskItemProps = {
 	task: Task;
@@ -14,9 +15,9 @@ const TaskItem: FC<TaskItemProps> = ({
 	handleDelete,
 }) => {
 	return (
-		<li className="task">
+		<li className={styles['task']}>
 			<div>
-				<h3 className={task.completed ? 'title-completed' : ''}>
+				<h3 className={task.completed ? styles['title-completed'] : ''}>
 					{task.title}
 				</h3>
 				<p>{task.description}</p>

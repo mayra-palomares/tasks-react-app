@@ -10,6 +10,7 @@ import {
 	parseTasktoFormSchema,
 } from './validator';
 import Switch from '../common/Switch';
+import styles from './TaskForm.module.css';
 
 const initialTask = { title: '', description: '', tags: [], completed: false };
 
@@ -37,11 +38,11 @@ const TaskForm: FC<TaskFormProps> = ({ task = initialTask, handleSave }) => {
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
-			className="form"
+			className={styles['form']}
 			autoComplete="off"
 			autoCorrect="off"
 		>
-			<div className="form-group">
+			<div className={styles['form-group']}>
 				<label>Name</label>
 				<input
 					{...register('title')}
@@ -49,9 +50,11 @@ const TaskForm: FC<TaskFormProps> = ({ task = initialTask, handleSave }) => {
 					autoComplete="off"
 					autoCorrect="off"
 				/>
-				{errors.title && <span className="error">{errors.title?.message}</span>}
+				{errors.title && (
+					<span className={styles['error']}>{errors.title?.message}</span>
+				)}
 			</div>
-			<div className="form-group">
+			<div className={styles['form-group']}>
 				<label>Description</label>
 				<textarea
 					{...register('description')}
@@ -60,10 +63,10 @@ const TaskForm: FC<TaskFormProps> = ({ task = initialTask, handleSave }) => {
 					rows={4}
 				/>
 				{errors.description && (
-					<span className="error">{errors.description?.message}</span>
+					<span className={styles['error']}>{errors.description?.message}</span>
 				)}
 			</div>
-			<div className="form-group">
+			<div className={styles['form-group']}>
 				<label>Tags</label>
 				<Controller
 					name="tags"
@@ -77,9 +80,11 @@ const TaskForm: FC<TaskFormProps> = ({ task = initialTask, handleSave }) => {
 						/>
 					)}
 				/>
-				{errors.tags && <span className="error">{errors.tags?.message}</span>}
+				{errors.tags && (
+					<span className={styles['error']}>{errors.tags?.message}</span>
+				)}
 			</div>
-			<div className="form-group-switch">
+			<div className={styles['form-group-switch']}>
 				<label>Completed</label>
 				<Controller
 					name="completed"
