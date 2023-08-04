@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { Task } from '../../types/Task';
 import TaskItem from './TaskItem';
+import styles from './TaskList.module.css';
 
 type TaskListProps = {
 	tasks: Task[];
@@ -14,7 +15,7 @@ const TaskList: FC<TaskListProps> = ({
 	handleDelete,
 }) => {
 	return (
-		<ul className="list">
+		<ul className={styles['list']}>
 			{tasks.map((task) => (
 				<TaskItem
 					key={task._id}

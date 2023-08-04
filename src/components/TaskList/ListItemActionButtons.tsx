@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
+import styles from './TaskList.module.css';
 
 type ButtonProps = { taskId: string };
 type CompleteButtonProps = ButtonProps & {
@@ -51,7 +52,7 @@ const ListItemActionButtons: FC<ActionButtonsProps> = ({
 	showCompleteBtn = true,
 }) => {
 	return (
-		<div className="action-buttons">
+		<div className={styles['action-buttons']}>
 			{showCompleteBtn ? (
 				<CompleteButton taskId={taskId} handleComplete={handleComplete} />
 			) : null}

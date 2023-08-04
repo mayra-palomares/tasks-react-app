@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styles from './TaskForm.module.css';
 
 export const CancelButton: FC = () => {
 	const navigate = useNavigate();
@@ -14,7 +15,7 @@ export const SaveButton: FC = () => {
 
 const FormActionButtons: FC = () => {
 	return (
-		<div className="edit-action-buttons">
+		<div className={styles['form-action-buttons']}>
 			<CancelButton />
 			<SaveButton />
 		</div>

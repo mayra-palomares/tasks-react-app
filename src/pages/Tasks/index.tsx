@@ -1,11 +1,12 @@
 import { useNavigate } from 'react-router-dom';
-import ErrorPage from '../components/common/ErrorPage';
-import Loading from '../components/common/Loading';
-import TaskList from '../components/TaskList';
-import useFetch from '../hooks/useFetch';
-import { Task } from '../types/Task';
+import ErrorPage from '../../components/common/ErrorPage';
+import Loading from '../../components/common/Loading';
+import TaskList from '../../components/TaskList';
+import useFetch from '../../hooks/useFetch';
+import { Task } from '../../types/Task';
 import { FC } from 'react';
-import { deleteById, post } from '../utils/api';
+import { deleteById, post } from '../../utils/api';
+import styles from './Tasks.module.css';
 
 const Tasks: FC = () => {
 	const { data, isLoading, error, fetchData } = useFetch<Task[]>('/tasks');
@@ -30,8 +31,8 @@ const Tasks: FC = () => {
 	}
 
 	return (
-		<main className="task-page">
-			<h1 className="title">TASK LIST</h1>
+		<main className={styles['task-page']}>
+			<h1 className={styles['title']}>TASK LIST</h1>
 			<button onClick={handleAddTask}>Add Task</button>
 			{isLoading ? (
 				<Loading />

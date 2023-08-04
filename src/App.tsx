@@ -1,4 +1,4 @@
-import './App.css';
+import './styles/global.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import EditTask from './pages/EditTask';
 import Tasks from './pages/Tasks';

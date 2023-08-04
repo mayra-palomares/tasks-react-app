@@ -1,0 +1,76 @@
+body {
+	margin: 0;
+}
+
+#root {
+	width: 100%;
+	min-height: 100vh;
+	margin: 0 auto;
+
+	font-size: large;
+	font-weight: 400;
+	font-family: monospace;
+	line-height: 1.5;
+
+	color-scheme: light dark;
+	color: #191919;
+	background-color: #fbfafa60;
+
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
+}
+
+button {
+	border-radius: 8px;
+	border: 1px solid transparent;
+	padding: 0.6em 1.2em;
+	font-size: 1em;
+	font-weight: 500;
+	font-family: inherit;
+	background-color: #646cff;
+	cursor: pointer;
+	transition: border-color 0.25s;
+}
+
+button:hover {
+	background-color: #020dd7;
+}
+
+button:focus,
+button:focus-visible {
+	outline: 4px auto -webkit-focus-ring-color;
+}
+
+.container {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.task-detail {
+	width: 40%;
+	height: fit-content;
+	margin-top: 100px 50px 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+@media only screen and (max-width: 1200px) {
+	.task-detail {
+		width: 60%;
+	}
+}
+
+@media only screen and (max-width: 800px) {
+	.task-detail {
+		width: 80%;
+	}
+}

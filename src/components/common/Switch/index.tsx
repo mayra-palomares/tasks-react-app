@@ -1,4 +1,5 @@
 import { FC, useId } from 'react';
+import styles from './Switch.module.css';
 
 type SwitchProps = {
 	isOn: boolean;
@@ -12,15 +13,19 @@ const Switch: FC<SwitchProps> = ({ isOn, handleToggle }) => {
 			<input
 				checked={isOn}
 				onChange={handleToggle}
-				className="switch-checkbox"
+				className={styles['switch-checkbox']}
 				id={switchId}
 				type="checkbox"
 			/>
 			<label
-				className={isOn ? 'switch-label switch-on' : 'switch-label switch-off'}
+				className={
+					isOn
+						? `${styles['switch-label']} ${styles['switch-on']}`
+						: `${styles['switch-label']} ${styles['switch-off']}`
+				}
 				htmlFor={switchId}
 			>
-				<span className="switch-button" />
+				<span className={styles['switch-button']} />
 			</label>
 		</>
 	);
