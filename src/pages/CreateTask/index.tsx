@@ -2,11 +2,16 @@ import { FC } from 'react';
 import TaskForm from '../../components/TaskForm';
 import { TaskRequest } from '../../types/Task';
 import { post } from '../../utils/api';
+import notify from '../../utils/notify';
+import { useNavigate } from 'react-router-dom';
 
 const CreateTask: FC = () => {
+	const navigate = useNavigate();
+
 	const handleSave = async (data: TaskRequest) => {
 		await post('/tasks', data);
-		alert('Task was created successfully');
+		navigate('/');
+		notify('Task created successfully!');
 	};
 
 	return (

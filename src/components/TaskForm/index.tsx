@@ -37,7 +37,6 @@ const TaskForm: FC<TaskFormProps> = ({
 
 	const onSubmit: SubmitHandler<FormSchema> = (data) => {
 		const parsedData = parseFormSchematoTask(data);
-		console.log('On Submit: ', { data, parsedData });
 		handleSave(parsedData);
 	};
 

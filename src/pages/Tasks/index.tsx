@@ -7,6 +7,7 @@ import { Task } from '../../types/Task';
 import { FC } from 'react';
 import { deleteById, post } from '../../utils/api';
 import styles from './Tasks.module.css';
+import notify from '../../utils/notify';
 
 const Tasks: FC = () => {
 	const { data, isLoading, error, fetchData } = useFetch<Task[]>('/tasks');
@@ -16,13 +17,13 @@ const Tasks: FC = () => {
 
 	const handleComplete = async (taskId: string) => {
 		await post(`/tasks/${taskId}/complete`, {});
-		alert('Task was completed successfully');
+		notify('Task completed successfully');
 		fetchData();
 	};
 
 	const handleDelete = async (taskId: string) => {
 		await deleteById(`/tasks/${taskId}`);
-		alert('Task was deleted');
+		notify('Task deleted successfully!');
 		fetchData();
 	};
 
