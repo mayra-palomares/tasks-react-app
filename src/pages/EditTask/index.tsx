@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom';
-import ErrorPage from '../components/common/ErrorPage';
-import Loading from '../components/common/Loading';
-import TaskForm from '../components/TaskForm';
-import useFetch from '../hooks/useFetch';
-import { Task, TaskRequest } from '../types/Task';
-import { put } from '../utils/api';
+import ErrorPage from '../../components/common/ErrorPage';
+import Loading from '../../components/common/Loading';
+import TaskForm from '../../components/TaskForm';
+import useFetch from '../../hooks/useFetch';
+import { Task, TaskRequest } from '../../types/Task';
+import { put } from '../../utils/api';
 import { FC } from 'react';
 
 const EditTask: FC = () => {
