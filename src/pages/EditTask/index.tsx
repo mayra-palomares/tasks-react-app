@@ -29,7 +29,7 @@ const EditTask: FC = () => {
 	return (
 		<div className="task-detail">
 			<h1 className="title">EDIT TASK</h1>
-			<TaskForm task={task} handleSave={handleSave} />
+			<TaskForm task={task} handleSave={handleSave} editMode={true} />
 		</div>
 	);
 };

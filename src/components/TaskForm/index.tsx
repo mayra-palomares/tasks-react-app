@@ -17,9 +17,14 @@ const initialTask = { title: '', description: '', tags: [], completed: false };
 type TaskFormProps = {
 	task?: TaskRequest;
 	handleSave: (data: TaskRequest) => void;
+	editMode?: boolean;
 };
 
-const TaskForm: FC<TaskFormProps> = ({ task = initialTask, handleSave }) => {
+const TaskForm: FC<TaskFormProps> = ({
+	task = initialTask,
+	handleSave,
+	editMode = false,
+}) => {
 	const {
 		register,
 		handleSubmit,
@@ -32,6 +37,7 @@ const TaskForm: FC<TaskFormProps> = ({ task = initialTask, handleSave }) => {
 
 	const onSubmit: SubmitHandler<FormSchema> = (data) => {
 		const parsedData = parseFormSchematoTask(data);
+		console.log('On Submit: ', { data, parsedData });
 		handleSave(parsedData);
 	};
 
@@ -84,22 +90,24 @@ const TaskForm: FC<TaskFormProps> = ({ task = initialTask, handleSave }) => {
 					<span className={styles['error']}>{errors.tags?.message}</span>
 				)}
 			</div>
-			<div className={styles['form-group-switch']}>
-				<label>Completed</label>
-				<Controller
-					name="completed"
-					control={control}
-					render={({ field }) => {
-						return (
-							<Switch
-								{...field}
-								isOn={field.value}
-								handleToggle={field.onChange}
-							/>
-						);
-					}}
-				/>
-			</div>
+			{editMode ? (
+				<div className={styles['form-group-switch']}>
+					<label>Completed</label>
+					<Controller
+						name="completed"
+						control={control}
+						render={({ field }) => {
+							return (
+								<Switch
+									{...field}
+									isOn={field.value}
+									handleToggle={field.onChange}
+								/>
+							);
+						}}
+					/>
+				</div>
+			) : null}
 			<FormActionButtons />
 		</form>
 	);
