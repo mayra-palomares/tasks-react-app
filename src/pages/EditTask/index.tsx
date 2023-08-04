@@ -6,6 +6,7 @@ import useFetch from '../../hooks/useFetch';
 import { Task, TaskRequest } from '../../types/Task';
 import { put } from '../../utils/api';
 import { FC } from 'react';
+import notify from '../../utils/notify';
 
 const EditTask: FC = () => {
 	const params = useParams();
@@ -15,7 +16,7 @@ const EditTask: FC = () => {
 
 	const handleSave = async (data: TaskRequest) => {
 		await put(`/tasks/${task._id}`, data);
-		alert('Task was saved successfully');
+		notify('Task updated successfully');
 	};
 
 	if (isLoading) {
