@@ -16,6 +16,7 @@ describe('Task form validator', () => {
             { label: 'tag1', value: 'tag1' },
             { label: 'tag2', value: 'tag2' },
         ],
+        completed: false
     };
 
     it('should parse TaskRequest to FormSchema correctly', () => {
