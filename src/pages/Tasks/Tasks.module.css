@@ -1,0 +1,24 @@
+
+.task-page {
+	width: 60%;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.title {
+	align-self: center;
+	font-size: 2.5rem;
+}
+
+@media only screen and (max-width: 1200px) {
+	.task-page {
+		width: 70%;
+	}
+}
+
+@media only screen and (max-width: 800px) {
+	.task-page {
+		width: 80%;
+	}
+}

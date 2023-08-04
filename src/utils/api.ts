@@ -17,7 +17,7 @@ export interface RequestOptions {
 
 const getUrl = (path: string) => API_URL + path
 
-export const fetchData = async (path: string, options?: RequestOptions) => {
+export const fetchAPI = async (path: string, options?: RequestOptions) => {
     const url = getUrl(path)
     const fetchOptions: RequestOptions = {
         method: options?.method ?? HttpMethod.GET,
@@ -34,7 +34,7 @@ export const fetchData = async (path: string, options?: RequestOptions) => {
 }
 
 export const get = async (path: string) => {
-    return await fetchData(path);
+    return await fetchAPI(path);
 }
 
 export const post = async (path: string, body: object) => {
@@ -42,7 +42,7 @@ export const post = async (path: string, body: object) => {
         method: HttpMethod.POST,
         body: JSON.stringify(body)
     }
-    return await fetchData(path, options);
+    return await fetchAPI(path, options);
 }
 
 export const put = async (path: string, body: object) => {
@@ -50,5 +50,12 @@ export const put = async (path: string, body: object) => {
         method: HttpMethod.PUT,
         body: JSON.stringify(body)
     }
-    return await fetchData(path, options);
+    return await fetchAPI(path, options);
+}
+
+export const deleteById = async (path: string) => {
+    const options: RequestOptions = {
+        method: HttpMethod.DELETE
+    }
+    return await fetchAPI(path, options);
 }
